@@ -1,0 +1,20 @@
+server:
+  port: 8888
+  session:
+    timeout: 1800
+  tomcat:
+    max-threads: 3000
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://172.16.22.98:3306
+    name: test
+    username: root
+    password: root
+
+
+
+
+
+
