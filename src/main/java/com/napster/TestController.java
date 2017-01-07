@@ -15,4 +15,19 @@ public class TestController {
     public String index() {
         return "index";
     }
+
+    @RequestMapping(value = "about")
+    public String about() {
+        return "blog/about";
+    }
+
+    @RequestMapping(value = "blog")
+    public String blog() {
+        return "blog/blog";
+    }
+
+    @RequestMapping(value = "contact")
+    public String contact() {
+        return "blog/contact";
+    }
 }

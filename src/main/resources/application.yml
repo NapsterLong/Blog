@@ -12,6 +12,9 @@ spring:
     name: test
     username: root
     password: root
+  thymeleaf:
+    cache: false
+
 
 
 
