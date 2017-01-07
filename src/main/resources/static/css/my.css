@@ -1,0 +1,55 @@
+.my-text-link {
+    color: #006699;
+    line-height: 2.8;
+}
+
+.my-text-link-middle {
+    color: #006699;
+    line-height: 2.8;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+.my-text-link:link {
+    color: #006699;
+}
+
+.my-text-link:visited {
+    color: #cc9900;
+}
+
+.my-text-link:hover {
+    color: #cc9900;
+}
+
+.my-text-link:active {
+    color: #cc9900;
+}
+
+@media (max-width: 1199px) {
+    .my-text-link {
+        line-height: 2.2;
+    }
+}
+
+@media (max-width: 991px) {
+    .my-text-link {
+        line-height: 2.4;
+    }
+}
+
+@media (max-width: 897px) {
+
+}
+
+@media (max-width: 767px) {
+
+}
+
+@media (max-width: 543px) {
+
+}
+
+@media (max-width: 510px) {
+
+}
