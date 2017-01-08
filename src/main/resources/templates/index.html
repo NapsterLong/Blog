@@ -54,16 +54,12 @@
                         </li>
                     </ul>
                 </div>
-
             </nav>
-
         </div>
     </div>
 </div>
 <!-- 头部图片-->
-<div class="tm-home-img-container">
-    <img src="/img/tm-home-img.jpg" alt="Image"
-         class="hidden-lg-up img-fluid"/>
+<div class="tm-blog-img-container">
 </div>
 <!--正文部分 -->
 <section class="tm-section">
@@ -76,80 +72,188 @@
 
                 <!--左侧文章 -->
                 <div class="tm-blog-post">
-                    <h3 class="tm-gold-text">Pellentesque fermentum mauris</h3>
-                    <p>Vivamus accumsan blandit ligula. Sed lobortis efficitur sapien</p>
-                    <img src="/img/tm-img-1010x336-1.jpg" alt="Image"
-                         class="img-fluid tm-img-post"/>
 
-                    <p>You can help templatemo by telling your friends about our HTML CSS templates. Praesent velit
-                        ante, congue ac dignissim in, vehicula sit amet urna. Fusce in dapibus quam, eget finibus velit.
-                        Nullam erat odio, vulputate id est ut, consequat rutrum justo. Vivamus vel leo vel nunc
-                        tincidunt mattis. Sed neque diam, semper suscipit dictum a, sodales ac metus. Class aptent
-                        taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                    <div class="tm-contact-related-posts-container tm-margin-b-30">
+                        <!-- 文章标题 -->
+                        <h3>
+                            <a href="/blog" class="my-text-link-height-middle">ConcurrentHashMap源码分析</a>
+                        </h3>
+                        <!-- 时间标签访问量评论量-->
+                        <div class="row small-font-half">
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
+                                2017-01-01 23:10|<a href="#">Java</a>
+                            </div>
+                            <div class="column col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 "></div>
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
+                                <div class="my-float-right">访问量：20000|评论量：2000</div>
+                            </div>
+                        </div>
 
-                    <p>Morbi vel pharetra massa, non iaculis tortor. Nulla porttitor tincidunt felis et feugiat. Vivamus
-                        fermentum ligula justo, sit amet blandit nisl volutpat id. Fusce sagittis ultricies felis, non
-                        luctus mauris lacinia quis. Ut fringilla lacus ac tempor ullamcorper. Mauris iaculis placerat ex
-                        et mattis.</p>
+                        <!--图片及正文梗概 -->
+                        <div class="media tm-related-post">
+                            <div class="media-left media-middle">
+                                <img class="media-object"
+                                     src="/img/tm-img-240x120-1.jpg"
+                                     alt="Generic placeholder image"/>
+                            </div>
+                            <div class="media-body">
+                                <p class="tm-small-font tm-media-description">
+                                    实现原理：锁分离：在HashMap的基础上，将数据分段存储，
+                                    ConcurrentHashMap由多个Segment组成，每个Segment都有把锁。
+                                    Segment下包含很多Node，也就是我们的键值对了。
+                                    CAS算法；unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+                                    CAS(Compare And Swap)，意思是如果valueOffset位置包含的值与expect值相同，
+                                    则更新valueOffset位置的值为update，并返回true，否则不更新，返回false....
+                                    <a href="/blog" class="my-text-link text-uppercase">阅读全文</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tm-contact-related-posts-container tm-margin-b-30">
+                        <!-- 文章标题 -->
+                        <h3>
+                            <a href="/blog" class="my-text-link-height-middle">ConcurrentHashMap源码分析</a>
+                        </h3>
+                        <!-- 时间标签访问量评论量-->
+                        <div class="row small-font-half">
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
+                                2017-01-01 23:10|<a href="#">Java</a>
+                            </div>
+                            <div class="column col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 "></div>
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
+                                <div class="my-float-right">访问量：20000|评论量：2000</div>
+                            </div>
+                        </div>
 
-                    <p>Quisque vel sem eu turpis ullamcorper euismod. Praesent quis nisi ac augue luctus viverra. Sed et
-                        dui nisi. Fusce vitae dapibus justo. Pellentesque accumsan est ac posuere imperdiet. Curabitur
-                        eros mi, lacinia at euismod quis, dapibus vel ligula. Ut sodales erat vitae nunc tempor mollis.
-                        Donec tempor lobortis tortor, in feugiat massa facilisis sed. Ut dignissim viverra pretium. In
-                        eu justo maximus turpis feugiat finibus scelerisque nec eros. Cras nec lectus tempor nibh
-                        vestibulum eleifend et ac elit.</p>
+                        <!--图片及正文梗概 -->
+                        <div class="media tm-related-post">
+                            <div class="media-left media-middle">
+                                <img class="media-object"
+                                     src="/img/tm-img-240x120-1.jpg"
+                                     alt="Generic placeholder image"/>
+                            </div>
+                            <div class="media-body">
+                                <p class="tm-small-font tm-media-description">
+                                    实现原理：锁分离：在HashMap的基础上，将数据分段存储，
+                                    ConcurrentHashMap由多个Segment组成，每个Segment都有把锁。
+                                    Segment下包含很多Node，也就是我们的键值对了。
+                                    CAS算法；unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+                                    CAS(Compare And Swap)，意思是如果valueOffset位置包含的值与expect值相同，
+                                    则更新valueOffset位置的值为update，并返回true，否则不更新，返回false....
+                                    <a href="/blog" class="my-text-link text-uppercase">阅读全文</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tm-contact-related-posts-container tm-margin-b-30">
+                        <!-- 文章标题 -->
+                        <h3>
+                            <a href="/blog" class="my-text-link-height-middle">ConcurrentHashMap源码分析</a>
+                        </h3>
+                        <!-- 时间标签访问量评论量-->
+                        <div class="row small-font-half">
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
+                                2017-01-01 23:10|<a href="#">Java</a>
+                            </div>
+                            <div class="column col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 "></div>
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
+                                <div class="my-float-right">访问量：20000|评论量：2000</div>
+                            </div>
+                        </div>
 
-                    <p>Sed vitae luctus libero. Nam sem neque, finibus id sem pharetra, cursus porttitor ligula.
-                        Praesent aliquam fermentum dui, vitae venenatis libero vulputate ac. Fusce bibendum scelerisque
-                        magna eget iaculis. Phasellus non arcu eu sem convallis semper. Duis vulputate dignissim
-                        rhoncus.</p>
+                        <!--图片及正文梗概 -->
+                        <div class="media tm-related-post">
+                            <div class="media-left media-middle">
+                                <img class="media-object"
+                                     src="/img/tm-img-240x120-1.jpg"
+                                     alt="Generic placeholder image"/>
+                            </div>
+                            <div class="media-body">
+                                <p class="tm-small-font tm-media-description">
+                                    实现原理：锁分离：在HashMap的基础上，将数据分段存储，
+                                    ConcurrentHashMap由多个Segment组成，每个Segment都有把锁。
+                                    Segment下包含很多Node，也就是我们的键值对了。
+                                    CAS算法；unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+                                    CAS(Compare And Swap)，意思是如果valueOffset位置包含的值与expect值相同，
+                                    则更新valueOffset位置的值为update，并返回true，否则不更新，返回false....
+                                    <a href="/blog" class="my-text-link text-uppercase">阅读全文</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tm-contact-related-posts-container tm-margin-b-30">
+                        <!-- 文章标题 -->
+                        <h3>
+                            <a href="/blog" class="my-text-link-height-middle">ConcurrentHashMap源码分析</a>
+                        </h3>
+                        <!-- 时间标签访问量评论量-->
+                        <div class="row small-font-half">
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
+                                2017-01-01 23:10|<a href="#">Java</a>
+                            </div>
+                            <div class="column col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 "></div>
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
+                                <div class="my-float-right">访问量：20000|评论量：2000</div>
+                            </div>
+                        </div>
+
+                        <!--图片及正文梗概 -->
+                        <div class="media tm-related-post">
+                            <div class="media-left media-middle">
+                                <img class="media-object"
+                                     src="/img/tm-img-240x120-1.jpg"
+                                     alt="Generic placeholder image"/>
+                            </div>
+                            <div class="media-body">
+                                <p class="tm-small-font tm-media-description">
+                                    实现原理：锁分离：在HashMap的基础上，将数据分段存储，
+                                    ConcurrentHashMap由多个Segment组成，每个Segment都有把锁。
+                                    Segment下包含很多Node，也就是我们的键值对了。
+                                    CAS算法；unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+                                    CAS(Compare And Swap)，意思是如果valueOffset位置包含的值与expect值相同，
+                                    则更新valueOffset位置的值为update，并返回true，否则不更新，返回false....
+                                    <a href="/blog" class="my-text-link text-uppercase">阅读全文</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tm-contact-related-posts-container tm-margin-b-30">
+                        <!-- 文章标题 -->
+                        <h3>
+                            <a href="/blog" class="my-text-link-height-middle">ConcurrentHashMap源码分析</a>
+                        </h3>
+                        <!-- 时间标签访问量评论量-->
+                        <div class="row small-font-half">
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
+                                2017-01-01 23:10|<a href="#">Java</a>
+                            </div>
+                            <div class="column col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 "></div>
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
+                                <div class="my-float-right">访问量：20000|评论量：2000</div>
+                            </div>
+                        </div>
+
+                        <!--图片及正文梗概 -->
+                        <div class="media tm-related-post">
+                            <div class="media-left media-middle">
+                                <img class="media-object"
+                                     src="/img/tm-img-240x120-1.jpg"
+                                     alt="Generic placeholder image"/>
+                            </div>
+                            <div class="media-body">
+                                <p class="tm-small-font tm-media-description">
+                                    实现原理：锁分离：在HashMap的基础上，将数据分段存储，
+                                    ConcurrentHashMap由多个Segment组成，每个Segment都有把锁。
+                                    Segment下包含很多Node，也就是我们的键值对了。
+                                    CAS算法；unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+                                    CAS(Compare And Swap)，意思是如果valueOffset位置包含的值与expect值相同，
+                                    则更新valueOffset位置的值为update，并返回true，否则不更新，返回false....
+                                    <a href="/blog" class="my-text-link text-uppercase">阅读全文</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <!--文章下面的三张图片 -->
-                <div class="row tm-margin-t-big">
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-
-                        <div class="tm-content-box">
-                            <img src="/img/tm-img-310x180-1.jpg"
-                                 alt="Image" class="tm-margin-b-30 img-fluid"/>
-                            <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #1</h4>
-                            <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
-                                consequat mauris dapibus id. Donec
-                                scelerisque porttitor pharetra</p>
-                            <a href="#" class="tm-btn text-uppercase">Detail</a>
-                        </div>
-
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-
-                        <div class="tm-content-box">
-                            <img src="/img/tm-img-310x180-2.jpg"
-                                 alt="Image" class="tm-margin-b-30 img-fluid"/>
-                            <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #2</h4>
-                            <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
-                                consequat mauris dapibus id. Donec
-                                scelerisque porttitor pharetra</p>
-                            <a href="#" class="tm-btn text-uppercase">Read More</a>
-                        </div>
-
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-
-                        <div class="tm-content-box">
-                            <img src="/img/tm-img-310x180-3.jpg"
-                                 alt="Image" class="tm-margin-b-30 img-fluid"/>
-                            <h4 class="tm-margin-b-20 tm-gold-text">Lorem ipsum dolor #3</h4>
-                            <p class="tm-margin-b-20">Aenean cursus tellus mauris, quis
-                                consequat mauris dapibus id. Donec
-                                scelerisque porttitor pharetra</p>
-                            <a href="#" class="tm-btn text-uppercase">Detail</a>
-                        </div>
-
-                    </div>
-                </div>
-
             </div>
 
             <!--正文右侧-->
@@ -197,7 +301,7 @@
 
                     <img src="/img/tm-img-310x180-1.jpg"
                          alt="Image" class="tm-margin-b-30 img-fluid"/>
-                    <p>关注我的微信号哦，有精彩的技术文章分享。</p>
+                    <p>☝☝☝ ︎关注我的微信号哦，有精彩的技术文章分享。</p>
                     <hr class="tm-margin-t-small"/>
 
                     <h3 class="tm-gold-text tm-title tm-margin-t-small">
@@ -206,12 +310,11 @@
                     <nav>
                         <ul class="nav">
                             <li><a href="#" class="my-text-link-middle">博客链接</a></li>
-                            <li><a href="#" class="my-text-link-middle">Google链接</a></li>
-                            <li><a href="#" class="my-text-link-middle">Oracle链接</a></li>
+                            <li><a href="www.google.com/ncr" class="my-text-link-middle">Google链接</a></li>
+                            <li><a href="www.baidu.com" class="my-text-link-middle">百度链接</a></li>
                         </ul>
                     </nav>
                 </div>
-
             </aside>
 
         </div>

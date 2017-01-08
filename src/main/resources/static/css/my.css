@@ -3,6 +3,11 @@
     line-height: 2.8;
 }
 
+.my-text-link-height-middle {
+    color: #006699;
+    line-height: 1.0;
+}
+
 .my-text-link-middle {
     color: #006699;
     line-height: 2.8;
@@ -10,22 +15,33 @@
     font-size: 14px;
 }
 
-.my-text-link:link {
+.my-text-link .my-text-link-height-middle:link {
     color: #006699;
 }
 
-.my-text-link:visited {
+.my-text-link .my-text-link-height-middle:visited {
     color: #cc9900;
 }
 
-.my-text-link:hover {
+.my-text-link .my-text-link-height-middle:hover {
     color: #cc9900;
 }
 
-.my-text-link:active {
+.my-text-link .my-text-link-height-middle:active {
     color: #cc9900;
 }
 
+.small-font-half {
+    font-size: 0.6rem;
+}
+
+.label {
+    color: #8c8c8c;
+}
+
+.my-float-right {
+    float: right;
+}
 @media (max-width: 1199px) {
     .my-text-link {
         line-height: 2.2;
