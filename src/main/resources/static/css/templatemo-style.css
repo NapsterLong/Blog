@@ -189,6 +189,8 @@ h4 {
     margin-bottom: 40px;
 }
 
+margin-top
+
 .tm-margin-t-big {
     margin-top: 90px;
 }
@@ -240,10 +242,12 @@ h4 {
     padding-left: 20px;
 }
 
+/* */
 .tm-footer {
     color: #c6c6c6;
-    background-color: #191919;
-    background-image: url('../img/classic-pattern-bg.png');
+    background-size: auto 300px;
+    height: 300px;
+    background: url('../img/footer.png') no-repeat center;
     font-size: 1rem;
     padding-top: 40px;
     padding-bottom: 20px;
