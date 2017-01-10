@@ -83,31 +83,23 @@ h2 {
 
 .tm-section {
     padding-top: 80px;
-    padding-bottom: 100px;
-}
-
-.tm-home-img-container {
-    background-image: url('../img/tm-home-img.jpg');
-    background-size: auto;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 500px;
+    padding-bottom: 80px;
 }
 
 .tm-about-img-container {
-    background-image: url('../img/tm-about-img.jpg');
+    background-image: url('../img/header/mountain.jpg');
 }
 
-.tm-blog-img-container {
-    background-image: url('../img/tm-blog-img.jpg');
+.tm-index-img-container {
+    background-image: url('../img/header/sky.jpg');
 }
 
 .tm-contact-img-container {
-    background-image: url('../img/tm-contact-img.jpg');
+    background-image: url('../img/header/mountain.jpg');
 }
 
 .tm-about-img-container,
-.tm-blog-img-container,
+.tm-index-img-container,
 .tm-contact-img-container {
     background-size: auto 200px;
     background-position: center;

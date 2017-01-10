@@ -43,6 +43,33 @@
     float: right;
     padding-right: 30px;
 }
+
+/**/
+.socialIcon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.tm-site-name:link {
+    color: #cc9900;
+}
+
+.tm-site-name:visited {
+    color: #cc9900;
+}
+
+.tm-site-name:hover {
+    color: #cc9900;
+}
+
+.tm-site-name:active {
+    color: #cc9900;
+}
+
+.tm-margin-t-15 {
+    margin-top: 15px;
+}
 @media (max-width: 1199px) {
     .my-text-link {
         line-height: 2.2;
