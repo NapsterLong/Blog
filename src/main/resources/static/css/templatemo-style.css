@@ -86,21 +86,21 @@ h2 {
     padding-bottom: 80px;
 }
 
-.tm-about-img-container {
+.tm-mountain-img-container {
     background-image: url('../img/header/mountain.jpg');
 }
 
-.tm-index-img-container {
+.tm-sky-img-container {
     background-image: url('../img/header/sky.jpg');
 }
 
-.tm-contact-img-container {
-    background-image: url('../img/header/mountain.jpg');
+.tm-city-img-container {
+    background-image: url('../img/header/city.jpg');
 }
 
-.tm-about-img-container,
-.tm-index-img-container,
-.tm-contact-img-container {
+.tm-mountain-img-container,
+.tm-sky-img-container,
+.tm-city-img-container {
     background-size: auto 200px;
     background-position: center;
     background-repeat: no-repeat;

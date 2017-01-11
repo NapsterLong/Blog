@@ -70,6 +70,11 @@
 .tm-margin-t-15 {
     margin-top: 15px;
 }
+
+.my-section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
 @media (max-width: 1199px) {
     .my-text-link {
         line-height: 2.2;
@@ -79,6 +84,11 @@
 @media (max-width: 991px) {
     .my-text-link {
         line-height: 2.4;
+    }
+
+    .my-section {
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 }
 
@@ -99,4 +109,8 @@
     .my-float-right {
     }
 
+    .my-section {
+        padding-top: 10%;
+        padding-bottom: 10%;
+    }
 }

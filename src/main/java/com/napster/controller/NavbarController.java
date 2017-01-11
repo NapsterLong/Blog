@@ -17,16 +17,16 @@ public class NavbarController {
 
     @RequestMapping("program")
     public String toProgram() {
-        return "navbar/program";
+        return "template/t_index";
     }
 
     @RequestMapping("life")
     public String toLife() {
-        return "navbar/life";
+        return "template/t_contact";
     }
 
     @RequestMapping("about")
     public String toAbout() {
-        return "navbar/about";
+        return "template/t_about";
     }
 }
