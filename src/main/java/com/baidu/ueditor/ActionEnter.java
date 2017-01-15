@@ -1,5 +1,6 @@
 package com.baidu.ueditor;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baidu.ueditor.define.ActionMap;
 import com.baidu.ueditor.define.AppInfo;
 import com.baidu.ueditor.define.BaseState;
@@ -17,21 +18,21 @@ public class ActionEnter {
 
     private String rootPath = null;
 
-    private String actionType = null;
-
     private ConfigManager configManager = null;
 
-    public ActionEnter(HttpServletRequest request, String rootPath) {
+    private JSONObject params;
+
+    public ActionEnter(HttpServletRequest request, JSONObject params, String rootPath) {
 
         this.request = request;
         this.rootPath = rootPath;
-        this.actionType = request.getParameter("action");
+        this.params = params;
         this.configManager = ConfigManager.getInstance(this.rootPath);
 
     }
 
     public String exec() {
-        String callbackName = this.request.getParameter("callback");
+        String callbackName = (String) params.get("callback");
 
         if (callbackName != null) {
 
@@ -49,6 +50,8 @@ public class ActionEnter {
 
     public String invoke() {
 
+        String actionType = (String) params.get("action");
+
         if (actionType == null || !ActionMap.mapping.containsKey(actionType)) {
             return new BaseState(false, AppInfo.INVALID_ACTION).toJSONString();
         }
@@ -59,7 +62,7 @@ public class ActionEnter {
 
         State state = null;
 
-        int actionCode = ActionMap.getType(this.actionType);
+        int actionCode = ActionMap.getType(actionType);
 
         Map<String, Object> conf = null;
 
