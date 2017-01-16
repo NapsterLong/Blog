@@ -15,19 +15,23 @@
     font-size: 14px;
 }
 
-.my-text-link .my-text-link-height-middle:link {
+.my-text-link:link,
+.my-text-link-height-middle:link {
     color: #006699;
 }
 
-.my-text-link .my-text-link-height-middle:visited {
+.my-text-link:visited,
+.my-text-link-height-middle:visited {
     color: #cc9900;
 }
 
-.my-text-link .my-text-link-height-middle:hover {
+.my-text-link:hover,
+.my-text-link-height-middle:hover {
     color: #cc9900;
 }
 
-.my-text-link .my-text-link-height-middle:active {
+.my-text-link:active,
+.my-text-link-height-middle :active {
     color: #cc9900;
 }
 
@@ -75,6 +79,7 @@
     padding-top: 30px;
     padding-bottom: 30px;
 }
+
 @media (max-width: 1199px) {
     .my-text-link {
         line-height: 2.2;
