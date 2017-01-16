@@ -1,0 +1,26 @@
+server:
+  port: 7777
+  session:
+    timeout: 1800
+  tomcat:
+    max-threads: 3000
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://172.16.22.98:3306
+    name: test
+    username: root
+    password: root
+  thymeleaf:
+    cache: false
+  http:
+    multipart:
+      enabled: true
+logging:
+  config: classpath:config/log4j2-dev.xml
+
+rootPath: /data1/resources
+
+
+
