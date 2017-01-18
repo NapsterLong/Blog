@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="off">
     <properties>
-        <property name="PROJECT_NAME">Blog</property>
+        <property name="PROJECT_NAME">blog</property>
         <property name="LOG_PATH">/logs</property>
-        <property name="LOG_BACK_PATH">${LOG_PATH}/history</property>
-        <property name="ERROR_FILE_NAME">error.log</property>
-        <property name="WARN_FILE_NAME">warn.log</property>
-        <property name="INFO_FILE_NAME">info.log</property>
-        <property name="CONFIG_FILE_NAME">config.log</property>
+        <property name="LOG_BACK_PATH">${LOG_PATH}/${PROJECT_NAME}/history</property>
+        <property name="ERROR_FILE_NAME">error</property>
+        <property name="WARN_FILE_NAME">warn</property>
+        <property name="INFO_FILE_NAME">info</property>
+        <property name="CONFIG_FILE_NAME">config</property>
+        <property name="SUFFIX">.log</property>
     </properties>
     <Appenders>
-        <RollingRandomAccessFile name="error" fileName="${LOG_PATH}/${PROJECT_NAME}/${ERROR_FILE_NAME}"
-                                 filePattern="${LOG_BACK_PATH}/${date:yyyy-MM}/${ERROR_FILE_NAME}.%d{yyyy-MM-dd}.log"
+        <!-- Error log -->
+        <RollingRandomAccessFile name="error" fileName="${LOG_PATH}/${PROJECT_NAME}/${ERROR_FILE_NAME}${SUFFIX}"
+                                 filePattern="${LOG_BACK_PATH}/${date:yyyy-MM}/${ERROR_FILE_NAME}.%d{yyyy-MM-dd}${SUFFIX}"
                                  append="true">
-            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] - %msg%n"/>
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] - %msg %xEx %n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
             </Policies>
@@ -21,8 +23,9 @@
                 <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
         </RollingRandomAccessFile>
-        <RollingRandomAccessFile name="warn" fileName="${LOG_PATH}/${PROJECT_NAME}/${WARN_FILE_NAME}"
-                                 filePattern="${LOG_BACK_PATH}/$${date:yyyy-MM}/${WARN_FILE_NAME}.%d{yyyy-MM-dd}.log"
+        <!-- Warn log -->
+        <RollingRandomAccessFile name="warn" fileName="${LOG_PATH}/${PROJECT_NAME}/${WARN_FILE_NAME}${SUFFIX}"
+                                 filePattern="${LOG_BACK_PATH}/${date:yyyy-MM}/${WARN_FILE_NAME}.%d{yyyy-MM-dd}${SUFFIX}"
                                  append="true">
             <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread]  - %msg%n"/>
             <Policies>
@@ -33,8 +36,9 @@
                 <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
         </RollingRandomAccessFile>
-        <RollingRandomAccessFile name="info" fileName="${LOG_PATH}/${PROJECT_NAME}/${INFO_FILE_NAME}"
-                                 filePattern="${LOG_BACK_PATH}/$${date:yyyy-MM}/${INFO_FILE_NAME}.%d{yyyy-MM-dd}.log"
+        <!-- Info log -->
+        <RollingRandomAccessFile name="info" fileName="${LOG_PATH}/${PROJECT_NAME}/${INFO_FILE_NAME}${SUFFIX}"
+                                 filePattern="${LOG_BACK_PATH}/${date:yyyy-MM}/${INFO_FILE_NAME}.%d{yyyy-MM-dd}${SUFFIX}"
                                  append="true">
             <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] - %msg%n"/>
             <Policies>
@@ -45,8 +49,9 @@
                 <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
         </RollingRandomAccessFile>
-        <RollingRandomAccessFile name="config" fileName="${LOG_PATH}/${PROJECT_NAME}/${CONFIG_FILE_NAME}"
-                                 filePattern="${LOG_BACK_PATH}/$${date:yyyy-MM}/${CONFIG_FILE_NAME}.%d{yyyy-MM-dd}.log"
+        <!-- Config log -->
+        <RollingRandomAccessFile name="config" fileName="${LOG_PATH}/${PROJECT_NAME}/${CONFIG_FILE_NAME}${SUFFIX}"
+                                 filePattern="${LOG_BACK_PATH}/${date:yyyy-MM}/${CONFIG_FILE_NAME}.%d{yyyy-MM-dd}${SUFFIX}"
                                  append="true">
             <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] - %msg%n"/>
             <Policies>
@@ -56,6 +61,8 @@
                 <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="ACCEPT"/>
             </Filters>
         </RollingRandomAccessFile>
+
+        <!--Async -->
         <Async name="asyncError">
             <AppenderRef ref="error"/>
         </Async>

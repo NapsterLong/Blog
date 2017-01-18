@@ -8,18 +8,46 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://172.16.22.98:3306
-    name: test
+    url: jdbc:mysql://172.16.22.98:3306/blog
     username: root
     password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    #durid config info
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
   thymeleaf:
     cache: false
   http:
     multipart:
       enabled: true
+#mybatis
+mybatis:
+  type-aliases-package: com.napster.model
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    auto-mapping-behavior: full
+    default-statement-timeout: 25000
+    map-underscore-to-camel-case: true
+#log4j2
 logging:
   config: classpath:config/log4j2-dev.xml
-
+#durid admin info
+druid:
+  admin:
+    username: admin
+    password: admin
+#blog info
 rootPath: /data1/resources
 
 

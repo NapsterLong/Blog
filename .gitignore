@@ -1,6 +1,6 @@
 target/
 src/main/resources/rebel.xml
-/blogadmin/src/main/resources/rebel.xml
+src/main/resources/mapper/generator/
 
 ### STS ###
 .apt_generated

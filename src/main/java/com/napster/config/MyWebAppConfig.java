@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * 资源路径config
+ * web配置类
  */
 @Configuration
 public class MyWebAppConfig extends WebMvcConfigurerAdapter {
@@ -14,6 +14,11 @@ public class MyWebAppConfig extends WebMvcConfigurerAdapter {
     @Value("${rootPath}")
     private String rootPath;
 
+    /**
+     * 配置资源路径映射
+     *
+     * @param registry
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/picture/**").
@@ -28,7 +33,8 @@ public class MyWebAppConfig extends WebMvcConfigurerAdapter {
                 addResourceLocations("file:" + rootPath + "/video/");
         registry.addResourceHandler("/file/**").
                 addResourceLocations("file:" + rootPath + "/file/");
-
         super.addResourceHandlers(registry);
     }
+
+
 }
