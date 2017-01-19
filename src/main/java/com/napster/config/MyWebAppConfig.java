@@ -15,7 +15,7 @@ public class MyWebAppConfig extends WebMvcConfigurerAdapter {
     private String rootPath;
 
     /**
-     * 配置资源路径映射
+     * 配置资源路径映射，可以使SpringBoot项目访问外部资源
      *
      * @param registry
      */

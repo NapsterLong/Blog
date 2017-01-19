@@ -4,6 +4,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import com.napster.util.LogUtil;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -11,13 +12,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
- * 数据源配置，包括druid配置，mybatis配置，
+ * 数据源配置，包括druid配置，mybatis配置，事务配置
  */
+
+@EnableTransactionManagement
+@MapperScan("com.napster.mapper")
 @Configuration
 public class DataSourceConfig {
 
@@ -80,8 +86,6 @@ public class DataSourceConfig {
 
     /**
      * 配置druid数据源
-     *
-     * @return
      */
     @Bean
     @Primary
@@ -127,7 +131,7 @@ public class DataSourceConfig {
     }
 
     /**
-     * 配置监控的路径
+     * 配置druid监控的路径
      */
     @Bean
     public FilterRegistrationBean filterRegistrationBean() {
@@ -138,22 +142,10 @@ public class DataSourceConfig {
         return filterRegistrationBean;
     }
 
-    /**
-     * 配置mybatis的mapper接口扫描
-     * 等同于注解配置@MapperScanner("com.napster.mapper")
-     */
-    /*@Bean
-    public MapperScannerConfigurer mapperScannerConfigurer() {
-        MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-        mapperScannerConfigurer.setBasePackage("com.napster.mapper");
-        return mapperScannerConfigurer;
-    }*/
-    @Bean
-    public DataSourceTransactionManager transactionManager() {
+    @Bean(name = "transactionManager")
+    public PlatformTransactionManager dataSourceTransactionManager() {
         return new DataSourceTransactionManager(dataSource());
     }
-
-
 }
 
 

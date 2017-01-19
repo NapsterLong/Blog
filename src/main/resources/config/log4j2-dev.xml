@@ -65,7 +65,7 @@
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
             </Policies>
             <Filters>
-                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="ACCEPT"/>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="ACCEPT"/>
             </Filters>
         </RollingRandomAccessFile>
 

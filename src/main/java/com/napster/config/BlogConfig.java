@@ -20,11 +20,17 @@ import java.io.IOException;
 @Configuration
 public class BlogConfig {
 
+    /**
+     * 配置上传文件解析
+     */
     @Bean("multipartResolver")
     public MultipartResolver multipartResolver() {
         return new MyMultipartResolver();
     }
 
+    /**
+     * HiddenHttpMethodFilter会改掉request的某些信息，使得post传文件时取出流错误
+     */
     @Bean
     public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
         return new OrderedHiddenHttpMethodFilter() {
