@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.napster.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.napster.model.User">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="userId" jdbcType="VARCHAR" property="userId"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="userPassword" jdbcType="VARCHAR" property="userPassword"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, userId, userName, userPassword, createTime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_USER
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        DELETE FROM T_USER
+        WHERE id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.napster.model.User">
+        INSERT INTO T_USER (id, userId, userName,
+                            userPassword, createTime)
+        VALUES (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+                #{userPassword,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.napster.model.User">
+        insert into T_USER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                userId,
+            </if>
+            <if test="userName != null">
+                userName,
+            </if>
+            <if test="userPassword != null">
+                userPassword,
+            </if>
+            <if test="createTime != null">
+                createTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null">
+                #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.napster.model.User">
+        update T_USER
+        <set>
+            <if test="userId != null">
+                userId = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                userName = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null">
+                userPassword = #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                createTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.napster.model.User">
+        UPDATE T_USER
+        SET userId       = #{userId,jdbcType=VARCHAR},
+            userName     = #{userName,jdbcType=VARCHAR},
+            userPassword = #{userPassword,jdbcType=VARCHAR},
+            createTime   = #{createTime,jdbcType=TIMESTAMP}
+        WHERE id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM T_USER
+        WHERE userId=#{userId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByUser" resultMap="BaseResultMap" parameterType="com.napster.model.User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM T_USER
+        <where>
+            <if test="userId != null and userId != '' ">
+                userId = #{userId,jdbcType=VARCHAR}
+            </if>
+            <if test="userName != null and userName != ''">
+                and userName = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="userPassword != null and userPassword != ''">
+                and userPassword = #{userPassword,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                and createTime = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+</mapper>

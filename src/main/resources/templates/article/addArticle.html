@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/css/templatemo-style.css"/>
     <link rel="stylesheet" href="/css/my.css"/>
     <link rel="stylesheet" href="/css/sidebar.css"/>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <!-- load JS files -->
     <script src="/js/jquery-1.11.3.min.js"></script>
     <script src="/js/tether.min.js"></script>
@@ -23,19 +23,15 @@
     <script type="text/javascript" charset="utf-8" src="/plugin/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="utf-8" src="/plugin/ueditor/ueditor.all.js"></script>
     <script type="text/javascript" charset="utf-8" src="/plugin/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script src="/js/vue.js"></script>
+    <script src="/js/vue-router.js"></script>
+    <script src="/js/vue-resource.min.js"></script>
 </head>
 <body>
 <!-- 头部-->
-<div class="tm-header">
-    <div class="container-fluid">
-        <div class="tm-header-inner">
-            <a href="#" class="navbar-brand tm-site-name">NapsterLong</a>
-        </div>
-    </div>
-    <hr class="tm-margin-t-small"/>
-</div>
+<div th:substituteby="/common/header::adminHeader"></div>
 <!--正文 -->
-<section class="my-section">
+<section id="main" class="my-section">
     <div class="container-fluid">
         <div class="row tm-2-rows-sm-swap">
             <!--左侧导航栏 -->
@@ -75,11 +71,20 @@
 </section>
 <!-- 底栏 -->
 <div th:substituteby="/common/footer::footer"></div>
-
-
 <!--my js -->
-<script>
+<script th:inline="javascript">
     var editor = UE.getEditor('content');
+    var app = new Vue({
+        el: '#head',
+        data: {
+            userName: ""
+        },
+        created: function () {
+            this.userName = [[${userName}]];
+        },
+        method: {}
+    });
+
 </script>
 
 </body>

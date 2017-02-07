@@ -4,8 +4,6 @@ import com.napster.util.IPUtil;
 import com.napster.util.LogUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -41,14 +39,14 @@ public class BlogAspect {
      *
      * @param point
      */
-    @Around(value = "pointcut()")
+    /*@Around(value = "pointcut()")
     public void around(ProceedingJoinPoint point) {
         try {
             point.proceed();
         } catch (Throwable e) {
             LogUtil.logError(e);
         }
-    }
+    }*/
 
 
 }

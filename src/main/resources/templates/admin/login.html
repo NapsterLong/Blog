@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <title>登陆</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <script src="/js/vue.js"></script>
+    <script src="/js/vue-router.js"></script>
+    <script src="/js/vue-resource.min.js"></script>
+</head>
+<body>
+<div id="main" class="login">
+    <h2>NapsterLong</h2>
+    <div class="login-top">
+        <h1>LOGIN</h1>
+        <form>
+            <input type="text" placeholder="userId" v-model="userId"/>
+            <input type="password" placeholder="password" v-model="password"/>
+        </form>
+        <div class="forgot">
+            {{message}}
+            <input v-on:click="login" type="submit" value="Login"/>
+        </div>
+    </div>
+    <div class="login-bottom">
+        <h3>Welcome</h3>
+    </div>
+</div>
+<div class="copyright">
+    <p>©2016 NapsterLong. All rights reserved</p>
+    <p>京ICP备17004900号-1</p>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#main',
+        data: {
+            message: "",
+            userId: "",
+            password: ""
+        },
+        methods: {
+            login: function () {
+                this.$http.post("/admin/loginIn", {
+                    "userId": this.userId,
+                    "userPassword": this.password
+                }).then(function (response) {
+                    var result = response.data;
+                    var code = result.code;
+                    if (code == "SUCCESS") {
+                        location.href = "/admin/article/toAdd";
+                    } else {
+                        this.message = result.message;
+                    }
+                }, function () {
+                    this.message = "系统错误";
+                })
+            }
+        }
+    });
+</script>
+</body>
+</html>

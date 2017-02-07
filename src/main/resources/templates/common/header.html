@@ -19,18 +19,31 @@
                             <a href="/" class="nav-link">主页</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/program" class="nav-link">技术</a>
+                            <a href="/navbar/program" class="nav-link">技术</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/life" class="nav-link">随笔</a>
+                            <a href="/navbar/life" class="nav-link">随笔</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/about" class="nav-link">关于</a>
+                            <a href="/navbar/about" class="nav-link">关于</a>
                         </li>
                     </ul>
                 </div>
             </nav>
         </div>
     </div>
+</div>
+
+<!-- 管理后台头部栏-->
+<div id="head" class="tm-header" th:fragment="adminHeader">
+    <div class="container-fluid">
+        <div class="tm-header-inner">
+            <a href="#" class="navbar-brand tm-site-name">NapsterLong</a>
+            <div style="float: right">Welcome
+                <a th:href="@{/admin/logout}" class="tm-gold-text">{{userName}}</a>
+            </div>
+        </div>
+    </div>
+    <hr class="tm-margin-t-small"/>
 </div>
 </html>

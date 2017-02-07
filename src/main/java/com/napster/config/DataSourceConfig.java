@@ -3,6 +3,7 @@ package com.napster.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.github.pagehelper.PageHelper;
 import com.napster.util.LogUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,9 +18,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
- * 数据源配置，包括druid配置，mybatis配置，事务配置
+ * 数据源配置，包括druid配置，mybatis配置，事务配置，分页配置
  */
 
 @EnableTransactionManagement
@@ -142,9 +144,26 @@ public class DataSourceConfig {
         return filterRegistrationBean;
     }
 
+    /**
+     * 配置事务
+     */
     @Bean(name = "transactionManager")
     public PlatformTransactionManager dataSourceTransactionManager() {
         return new DataSourceTransactionManager(dataSource());
+    }
+
+    /**
+     * 配置分页插件
+     */
+    @Bean
+    public PageHelper pageHelper() {
+        PageHelper pageHelper = new PageHelper();
+        Properties properties = new Properties();
+        properties.setProperty("offsetAsPageNum", "true");
+        properties.setProperty("reasonable", "true");
+        properties.setProperty("pageSizeZero", "true");
+        pageHelper.setProperties(properties);
+        return pageHelper;
     }
 }
 
