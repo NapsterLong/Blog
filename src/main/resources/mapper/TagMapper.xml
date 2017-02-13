@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.napster.mapper.TagMapper">
+    <resultMap id="BaseResultMap" type="com.napster.model.Tag">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="tagName" jdbcType="VARCHAR" property="tagName"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="itOrLife" jdbcType="VARCHAR" property="itOrLife"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, tagName, creator, itOrLife, createTime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_TAG
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        DELETE FROM T_TAG
+        WHERE id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.napster.model.Tag">
+        INSERT INTO T_TAG (id, tagName, creator,
+                           itOrLife, createTime)
+        VALUES (#{id,jdbcType=BIGINT}, #{tagName,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
+                #{itOrLife,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.napster.model.Tag">
+        insert into T_TAG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="tagName != null">
+                tagName,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="itOrLife != null">
+                itOrLife,
+            </if>
+            <if test="createTime != null">
+                createTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="tagName != null">
+                #{tagName,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="itOrLife != null">
+                #{itOrLife,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.napster.model.Tag">
+        update T_TAG
+        <set>
+            <if test="tagName != null">
+                tagName = #{tagName,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="itOrLife != null">
+                itOrLife = #{itOrLife,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                createTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.napster.model.Tag">
+        UPDATE T_TAG
+        SET tagName    = #{tagName,jdbcType=VARCHAR},
+            creator    = #{creator,jdbcType=VARCHAR},
+            itOrLife   = #{itOrLife,jdbcType=VARCHAR},
+            createTime = #{createTime,jdbcType=TIMESTAMP}
+        WHERE id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <!--以上为自动生成 -->
+
+    <insert id="insertIgnore" parameterType="com.napster.model.Tag" useGeneratedKeys="true" keyProperty="id">
+        INSERT IGNORE INTO T_TAG (`tagName`, `creator`, `itOrLife`)
+        VALUES (#{tagName,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{itOrLife,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="selectByTagName" parameterType="java.lang.String" resultType="com.napster.model.Tag">
+        SELECT *
+        FROM T_TAG
+        WHERE tagName = #{tagName,jdbcType=VARCHAR}
+    </select>
+</mapper>

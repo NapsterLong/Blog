@@ -2,8 +2,8 @@ package com.napster.controller.admin;
 
 import com.napster.common.response.ResponseResult;
 import com.napster.enums.ResultCodeEnum;
-import com.napster.mapper.UserMapper;
 import com.napster.model.User;
+import com.napster.service.admin.LoginServiceImpl;
 import com.napster.service.admin.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class LoginController {
     private UserServiceImpl userService;
 
     @Autowired
-    private UserMapper userMapper;
+    private LoginServiceImpl loginService;
 
     @RequestMapping("/login")
     public String login() {
@@ -41,9 +41,9 @@ public class LoginController {
     @RequestMapping("/loginIn")
     @ResponseBody
     public ResponseResult<String> loginIn(@RequestBody User user, HttpServletRequest request) {
-        ResponseResult<String> responseResult = userService.loginIn(user);
+        ResponseResult<String> responseResult = loginService.loginIn(user);
         if (responseResult.getCode().equals(ResultCodeEnum.SUCCESS)) {
-            User loginUser = userMapper.selectByUserId(user.getUserId());
+            User loginUser = userService.getByUserId(user.getUserId());
             HttpSession session = request.getSession(true);
             session.setAttribute("userId", loginUser.getUserId());
             session.setAttribute("userName", loginUser.getUserName());

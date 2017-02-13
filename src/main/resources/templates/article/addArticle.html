@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -40,31 +41,50 @@
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9 tm-2-rows-sm-down-1">
                 <form action="#" method="post" class="tm-contact-form">
                     <div class="form-group">
-                        文章标题
+                        <label for="title">文章标题</label>
+                        <span class="my-message-error">{{message_title}}</span>
                         <input type="text" id="title" name="title" class="form-control"
-                               placeholder="Title" required="required"/>
+                               placeholder="Title" required="required" maxlength="64" v-model="title"/>
                     </div>
                     <div class="form-group">
-                        文章标签
+                        <label for="itOrLife">文章性质</label>
+                        <select id="itOrLife" name="itOrLife" class="form-control" required="required"
+                                v-model="itOrLife">
+                            <option value="01">技术</option>
+                            <option value="02">随笔</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">文章类别</label>
+                        <select id="category" name="category" class="form-control" required="required"
+                                v-model="category">
+                            <option v-for="temp in categories" v-bind:value="temp.id">
+                                {{ temp.categoryName }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tags">文章标签</label>
                         <input type="text" id="tags" name="tags" class="form-control"
-                               placeholder="Tags" required="required"/>
+                               placeholder="Tags(Press Enter to Add Tag)" v-on:keyup.enter="addTag()"
+                               v-model="tempTag"/>
+                        <button type="button" v-for="tag in tags" class="my-tag" v-on:click="deleteTag(tag)">{{tag}}
+                        </button>
                     </div>
                     <div class="form-group">
-                        文章作者
-                        <input type="text" id="author" name="author" class="form-control"
-                               placeholder="Author" required="required"/>
+                        <label for="summary">文章摘要</label>
+                        <span class="my-message-error">{{message_summary}}</span>
+                        <textarea id="summary" name="summary" class="form-control" rows="6"
+                                  placeholder="Summary" required="required" maxlength="256"
+                                  v-model="summary"></textarea>
                     </div>
                     <div class="form-group">
-                        文章摘要
-                        <textarea id="abstract" name="abstract" class="form-control" rows="6"
-                                  placeholder="Abstract" required="required"></textarea>
-                    </div>
-                    <div class="form-group">
-                        文章正文
+                        <label for="content">文章正文</label>
                         <script type="text/plain" id="content" style="width:100%"></script>
                     </div>
-                    <button type="submit" class="tm-btn" onclick="test()">发布</button>
                 </form>
+                <button class="tm-btn" v-on:click="addArticle()">发布</button>
+                <span class="my-message-error">{{message}}</span>
             </div>
         </div>
     </div>
@@ -73,6 +93,7 @@
 <div th:substituteby="/common/footer::footer"></div>
 <!--my js -->
 <script th:inline="javascript">
+
     var editor = UE.getEditor('content');
     var app = new Vue({
         el: '#head',
@@ -85,6 +106,135 @@
         method: {}
     });
 
+    var appMain = new Vue({
+        el: '#main',
+        data: {
+            title: "",
+            itOrLife: "",
+            category: "",
+            categories: [],
+            tempTag: "",
+            tags: [],
+            author: app.userName,
+            summary: "",
+            content: "",
+            message_title: "",
+            message_summary: "",
+            message: ""
+        },
+        created: function () {
+            this.itOrLife = "01";
+            this.categories = [[${categories}]];
+            if (this.categories == null || this.categories == [] || this.categories.length == 0) {
+            } else {
+                this.category = this.categories[0].id;
+            }
+        },
+        watch: {
+            itOrLife: function () {
+                this.$http.post("/admin/category/listCategoriesByIL", {"itOrLife": this.itOrLife})
+                    .then(function (response) {
+                        var result = response.data;
+                        var code = result.code;
+                        if (code == "SUCCESS") {
+                            this.categories = result.data;
+                            if (this.categories == null || this.categories == [] || this.categories.length == 0) {
+                            } else {
+                                this.category = this.categories[0].id;
+                            }
+                        } else {
+                            alert(result.message);
+                        }
+                    }, function (response) {
+                        var result = response.data;
+                        alert(result.message ? result.message : "系统错误");
+                    });
+            },
+            title: function () {
+                if (this.title.length >= 64) {
+                    this.message_title = "标题长度不可大于64";
+                } else {
+                    this.message_title = "";
+                }
+            },
+            summary: function () {
+                if (this.summary.length >= 256) {
+                    this.message_summary = "摘要长度不可大于256";
+                } else {
+                    this.message_summary = "";
+                }
+            }
+
+        },
+        methods: {
+            addTag: function () {
+                this.tempTag = this.tempTag.replace(/\s+/g, "");
+                if (this.tempTag == null || this.tempTag == undefined || this.tempTag.length == 0) {
+                    return;
+                }
+                this.tags.push(this.tempTag);
+                this.tempTag = "";
+            },
+            deleteTag: function (tag) {
+                this.tags.splice(this.tags.indexOf(tag), 1);
+            },
+            addArticle: function () {
+                this.content = editor.getContent();
+                if (this.title == null || this.title == "") {
+                    this.message = "文章标题不可为空";
+                    return false;
+                }
+                if (this.tags == null || this.tags == "") {
+                    this.message = "文章标签不可为空";
+                    return false;
+                }
+                if (this.category == null || this.category == "") {
+                    this.message = "文章类别不可为空";
+                    return false;
+                }
+                if (this.summary == null || this.summary == "") {
+                    this.message = "文章摘要不可为空";
+                    return false;
+                }
+                if (this.content == null || this.content == "") {
+                    this.message = "文章内容不可为空";
+                    return false;
+                }
+                this.$http.post("/admin/article/add", {
+                    "title": this.title,
+                    "itOrLife": this.itOrLife,
+                    "category": this.category,
+                    "tags": this.tags,
+                    "summary": this.summary,
+                    "author": this.author,
+                    "content": this.content
+                }).then(function (response) {
+                    var result = response.data;
+                    var code = result.code;
+                    if (code == "SUCCESS") {
+                        this.message = "发布成功";
+                        this.clearData();
+                    } else {
+                        this.message = result.message;
+                    }
+                }, function (response) {
+                    var result = response.data;
+                    this.message = result.message ? result.message : "系统错误";
+                });
+            },
+            clearData: function () {
+                this.title = "";
+                this.tempTag = "";
+                this.tags = [];
+                this.summary = "";
+                this.content = "";
+                this.message_title = "";
+                this.message_summary = "";
+                editor.execCommand('cleardoc');
+            }
+        }
+
+    });
 </script>
 
 </body>

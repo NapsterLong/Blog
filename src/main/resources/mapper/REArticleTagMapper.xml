@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.napster.mapper.REArticleTagMapper">
+    <resultMap id="BaseResultMap" type="com.napster.model.REArticleTag">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="articleId" jdbcType="BIGINT" property="articleId"/>
+        <result column="tagId" jdbcType="BIGINT" property="tagId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, articleId, tagId
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_RE_ARTICLE_TAG
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        DELETE FROM T_RE_ARTICLE_TAG
+        WHERE id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.napster.model.REArticleTag">
+        INSERT INTO T_RE_ARTICLE_TAG (id, articleId, tagId
+        )
+        VALUES (#{id,jdbcType=BIGINT}, #{articleId,jdbcType=BIGINT}, #{tagId,jdbcType=BIGINT}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.napster.model.REArticleTag">
+        insert into T_RE_ARTICLE_TAG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="articleId != null">
+                articleId,
+            </if>
+            <if test="tagId != null">
+                tagId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="articleId != null">
+                #{articleId,jdbcType=BIGINT},
+            </if>
+            <if test="tagId != null">
+                #{tagId,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.napster.model.REArticleTag">
+        update T_RE_ARTICLE_TAG
+        <set>
+            <if test="articleId != null">
+                articleId = #{articleId,jdbcType=BIGINT},
+            </if>
+            <if test="tagId != null">
+                tagId = #{tagId,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.napster.model.REArticleTag">
+        UPDATE T_RE_ARTICLE_TAG
+        SET articleId = #{articleId,jdbcType=BIGINT},
+            tagId     = #{tagId,jdbcType=BIGINT}
+        WHERE id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

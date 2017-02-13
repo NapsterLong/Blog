@@ -15,8 +15,8 @@
     <div class="login-top">
         <h1>LOGIN</h1>
         <form>
-            <input type="text" placeholder="userId" v-model="userId"/>
-            <input type="password" placeholder="password" v-model="password"/>
+            <input v-on:keyup.enter="login" type="text" placeholder="userId" v-model="userId"/>
+            <input v-on:keyup.enter="login" type="password" placeholder="password" v-model="password"/>
         </form>
         <div class="forgot">
             {{message}}

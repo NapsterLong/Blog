@@ -90,6 +90,9 @@
             createTime   = #{createTime,jdbcType=TIMESTAMP}
         WHERE id = #{id,jdbcType=BIGINT}
     </update>
+
+    <!--以上为自动生成 -->
+
     <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
         <include refid="Base_Column_List"/>

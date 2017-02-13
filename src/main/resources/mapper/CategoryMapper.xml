@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.napster.mapper.CategoryMapper">
+    <resultMap id="BaseResultMap" type="com.napster.model.Category">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="categoryName" jdbcType="VARCHAR" property="categoryName"/>
+        <result column="itOrLife" jdbcType="VARCHAR" property="itOrLife"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, categoryName, itOrLife, creator, createTime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_CATEGORY
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        DELETE FROM T_CATEGORY
+        WHERE id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.napster.model.Category">
+        INSERT INTO T_CATEGORY (id, categoryName, itOrLife,
+                                creator, createTime)
+        VALUES (#{id,jdbcType=BIGINT}, #{categoryName,jdbcType=VARCHAR}, #{itOrLife,jdbcType=VARCHAR},
+                #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.napster.model.Category">
+        insert into T_CATEGORY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="categoryName != null">
+                categoryName,
+            </if>
+            <if test="itOrLife != null">
+                itOrLife,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createTime != null">
+                createTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="categoryName != null">
+                #{categoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="itOrLife != null">
+                #{itOrLife,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.napster.model.Category">
+        update T_CATEGORY
+        <set>
+            <if test="categoryName != null">
+                categoryName = #{categoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="itOrLife != null">
+                itOrLife = #{itOrLife,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                createTime = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.napster.model.Category">
+        UPDATE T_CATEGORY
+        SET categoryName = #{categoryName,jdbcType=VARCHAR},
+            itOrLife     = #{itOrLife,jdbcType=VARCHAR},
+            creator      = #{creator,jdbcType=VARCHAR},
+            createTime   = #{createTime,jdbcType=TIMESTAMP}
+        WHERE id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <!--以上为自动生成 -->
+    <select id="listCategoriesByIL" parameterType="java.lang.String" resultType="com.napster.model.Category">
+        SELECT *
+        FROM T_CATEGORY
+        WHERE itOrLife = #{itOrLife,jdbcType=VARCHAR}
+    </select>
+</mapper>

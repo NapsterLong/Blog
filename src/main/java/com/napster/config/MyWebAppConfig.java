@@ -39,6 +39,8 @@ public class MyWebAppConfig extends WebMvcConfigurerAdapter {
                 addResourceLocations("file:" + rootPath + "/video/");
         registry.addResourceHandler("/file/**").
                 addResourceLocations("file:" + rootPath + "/file/");
+        registry.addResourceHandler("/html/**").
+                addResourceLocations("file:" + rootPath + "/html/");
         super.addResourceHandlers(registry);
     }
 
