@@ -1,19 +1,22 @@
 package com.napster.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Article {
     private Long id;
 
     private String title;
 
-    private Long categoryId;
+    private String categoryName;
 
     private String author;
 
     private String summary;
 
     private String contentFile;
+
+    private String coverFile;
 
     private String itOrLife;
 
@@ -25,6 +28,16 @@ public class Article {
 
     private Date updateTime;
 
+    //tags
+    private List<Tag> tags;
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
     public Long getId() {
         return id;
     }
@@ -41,12 +54,12 @@ public class Article {
         this.title = title == null ? null : title.trim();
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName == null ? null : categoryName.trim();
     }
 
     public String getAuthor() {
@@ -71,6 +84,14 @@ public class Article {
 
     public void setContentFile(String contentFile) {
         this.contentFile = contentFile == null ? null : contentFile.trim();
+    }
+
+    public String getCoverFile() {
+        return coverFile;
+    }
+
+    public void setCoverFile(String coverFile) {
+        this.coverFile = coverFile == null ? null : coverFile.trim();
     }
 
     public String getItOrLife() {

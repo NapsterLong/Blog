@@ -58,7 +58,7 @@
                         <label for="category">文章类别</label>
                         <select id="category" name="category" class="form-control" required="required"
                                 v-model="category">
-                            <option v-for="temp in categories" v-bind:value="temp.id">
+                            <option v-for="temp in categories" v-bind:value="temp.categoryName">
                                 {{ temp.categoryName }}
                             </option>
                         </select>
@@ -81,6 +81,12 @@
                     <div class="form-group">
                         <label for="content">文章正文</label>
                         <script type="text/plain" id="content" style="width:100%"></script>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">文章封面</label>
+                        <span class="my-message-error">{{message_coverFile}}</span>
+                        <input type="text" id="coverFile" name="coverFile" class="form-control"
+                               placeholder="CoverFile" required="required" maxlength="64" v-model="coverFile"/>
                     </div>
                 </form>
                 <button class="tm-btn" v-on:click="addArticle()">发布</button>
@@ -118,8 +124,10 @@
             author: app.userName,
             summary: "",
             content: "",
+            coverFile: "",
             message_title: "",
             message_summary: "",
+            message_coverFile: "",
             message: ""
         },
         created: function () {
@@ -127,7 +135,7 @@
             this.categories = [[${categories}]];
             if (this.categories == null || this.categories == [] || this.categories.length == 0) {
             } else {
-                this.category = this.categories[0].id;
+                this.category = this.categories[0].categoryName;
             }
         },
         watch: {
@@ -140,7 +148,7 @@
                             this.categories = result.data;
                             if (this.categories == null || this.categories == [] || this.categories.length == 0) {
                             } else {
-                                this.category = this.categories[0].id;
+                                this.category = this.categories[0].categoryName;
                             }
                         } else {
                             alert(result.message);
@@ -162,6 +170,13 @@
                     this.message_summary = "摘要长度不可大于256";
                 } else {
                     this.message_summary = "";
+                }
+            },
+            coverFile: function () {
+                if (this.coverFile.length >= 64) {
+                    this.message_coverFile = "文章封面文件名不可大于64";
+                } else {
+                    this.message_coverFile = "";
                 }
             }
 
@@ -200,6 +215,10 @@
                     this.message = "文章内容不可为空";
                     return false;
                 }
+                if (this.coverFile == null || this.coverFile == "") {
+                    this.message = "文章摘要封面不可为空";
+                    return false;
+                }
                 this.$http.post("/admin/article/add", {
                     "title": this.title,
                     "itOrLife": this.itOrLife,
@@ -207,7 +226,8 @@
                     "tags": this.tags,
                     "summary": this.summary,
                     "author": this.author,
-                    "content": this.content
+                    "content": this.content,
+                    "coverFile": this.coverFile
                 }).then(function (response) {
                     var result = response.data;
                     var code = result.code;
@@ -230,6 +250,7 @@
                 this.content = "";
                 this.message_title = "";
                 this.message_summary = "";
+                this.coverFile = "";
                 editor.execCommand('cleardoc');
             }
         }

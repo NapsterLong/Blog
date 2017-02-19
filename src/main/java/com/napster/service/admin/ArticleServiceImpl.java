@@ -55,14 +55,15 @@ public class ArticleServiceImpl implements ArticleService {
         }
         String title = (String) map.get("title");
         String itOrLife = (String) map.get("itOrLife");
-        int category = (int) map.get("category");
+        String category = (String) map.get("category");
         ArrayList<String> tags = (ArrayList<String>) map.get("tags");
         String summary = (String) map.get("summary");
         String author = (String) map.get("author");
         String content = (String) map.get("content");
+        String coverFile = (String) map.get("coverFile");
         if (StringUtils.isBlank(title) || StringUtils.isBlank(itOrLife) || StringUtils.isBlank(String.valueOf(category)) ||
                 StringUtils.isBlank(summary) || StringUtils.isBlank(author) || StringUtils.isBlank(content)
-                || CollectionUtils.isEmpty(tags)) {
+                || StringUtils.isBlank(coverFile) || CollectionUtils.isEmpty(tags)) {
             responseResult.setCode(ResultCodeEnum.ARGUMENT_ERROR);
             responseResult.setMessage("参数错误");
             return responseResult;
@@ -78,10 +79,11 @@ public class ArticleServiceImpl implements ArticleService {
         //插入文章
         Article article = new Article();
         article.setTitle(title);
-        article.setCategoryId(Long.parseLong(String.valueOf(category)));
+        article.setCategoryName(category);
         article.setAuthor(author);
         article.setSummary(summary);
         article.setContentFile(contentFile);
+        article.setCoverFile(coverFile);
         article.setItOrLife(itOrLife);
         articleMapper.insertSelective(article);
         long articleId = article.getId();

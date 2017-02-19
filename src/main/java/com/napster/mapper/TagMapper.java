@@ -4,6 +4,8 @@ import com.napster.model.Tag;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public interface TagMapper {
     int deleteByPrimaryKey(Long id);
@@ -34,4 +36,11 @@ public interface TagMapper {
      */
     Tag selectByTagName(@Param("tagName") String tagName);
 
+    /**
+     * 根据文章ID查询该文章的所有标签
+     *
+     * @param articleId 文章ID
+     * @return 标签列表
+     */
+    List<Tag> selectTagsByArticleId(Long articleId);
 }

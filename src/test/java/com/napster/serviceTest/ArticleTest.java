@@ -23,7 +23,7 @@ public class ArticleTest {
     public void testInsert() {
         Article article = new Article();
         article.setTitle("test");
-        article.setCategoryId(Long.parseLong("11"));
+        article.setCategoryName("");
         article.setAuthor("test");
         article.setSummary("test");
         article.setContentFile("test");

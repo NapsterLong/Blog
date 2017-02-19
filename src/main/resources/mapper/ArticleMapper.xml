@@ -1,174 +1,205 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.napster.mapper.ArticleMapper">
-    <resultMap id="BaseResultMap" type="com.napster.model.Article">
-        <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="title" jdbcType="VARCHAR" property="title"/>
-        <result column="categoryId" jdbcType="BIGINT" property="categoryId"/>
-        <result column="author" jdbcType="VARCHAR" property="author"/>
-        <result column="summary" jdbcType="VARCHAR" property="summary"/>
-        <result column="contentFile" jdbcType="VARCHAR" property="contentFile"/>
-        <result column="itOrLife" jdbcType="VARCHAR" property="itOrLife"/>
-        <result column="visitCount" jdbcType="INTEGER" property="visitCount"/>
-        <result column="commentCount" jdbcType="INTEGER" property="commentCount"/>
-        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-        id, title, categoryId, author, summary, contentFile, itOrLife, visitCount, commentCount,
-        createTime, updateTime
-    </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from T_ARTICLE
-        where id = #{id,jdbcType=BIGINT}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        DELETE FROM T_ARTICLE
-        WHERE id = #{id,jdbcType=BIGINT}
-    </delete>
-    <insert id="insert" parameterType="com.napster.model.Article">
-        INSERT INTO T_ARTICLE (id, title, categoryId,
-                               author, summary, contentFile,
-                               itOrLife, visitCount, commentCount,
-                               createTime, updateTime)
-        VALUES (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{categoryId,jdbcType=BIGINT},
-                                       #{author,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR},
-                                       #{contentFile,jdbcType=VARCHAR},
-                                       #{itOrLife,jdbcType=VARCHAR}, #{visitCount,jdbcType=INTEGER},
-                                       #{commentCount,jdbcType=INTEGER},
-                                       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
-    </insert>
-    <insert id="insertSelective" parameterType="com.napster.model.Article" useGeneratedKeys="true" keyProperty="id">
-        insert into T_ARTICLE
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="title != null">
-                title,
-            </if>
-            <if test="categoryId != null">
-                categoryId,
-            </if>
-            <if test="author != null">
-                author,
-            </if>
-            <if test="summary != null">
-                summary,
-            </if>
-            <if test="contentFile != null">
-                contentFile,
-            </if>
-            <if test="itOrLife != null">
-                itOrLife,
-            </if>
-            <if test="visitCount != null">
-                visitCount,
-            </if>
-            <if test="commentCount != null">
-                commentCount,
-            </if>
-            <if test="createTime != null">
-                createTime,
-            </if>
-            <if test="updateTime != null">
-                updateTime,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
-            <if test="title != null">
-                #{title,jdbcType=VARCHAR},
-            </if>
-            <if test="categoryId != null">
-                #{categoryId,jdbcType=BIGINT},
-            </if>
-            <if test="author != null">
-                #{author,jdbcType=VARCHAR},
-            </if>
-            <if test="summary != null">
-                #{summary,jdbcType=VARCHAR},
-            </if>
-            <if test="contentFile != null">
-                #{contentFile,jdbcType=VARCHAR},
-            </if>
-            <if test="itOrLife != null">
-                #{itOrLife,jdbcType=VARCHAR},
-            </if>
-            <if test="visitCount != null">
-                #{visitCount,jdbcType=INTEGER},
-            </if>
-            <if test="commentCount != null">
-                #{commentCount,jdbcType=INTEGER},
-            </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateTime != null">
-                #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.napster.model.Article">
-        update T_ARTICLE
-        <set>
-            <if test="title != null">
-                title = #{title,jdbcType=VARCHAR},
-            </if>
-            <if test="categoryId != null">
-                categoryId = #{categoryId,jdbcType=BIGINT},
-            </if>
-            <if test="author != null">
-                author = #{author,jdbcType=VARCHAR},
-            </if>
-            <if test="summary != null">
-                summary = #{summary,jdbcType=VARCHAR},
-            </if>
-            <if test="contentFile != null">
-                contentFile = #{contentFile,jdbcType=VARCHAR},
-            </if>
-            <if test="itOrLife != null">
-                itOrLife = #{itOrLife,jdbcType=VARCHAR},
-            </if>
-            <if test="visitCount != null">
-                visitCount = #{visitCount,jdbcType=INTEGER},
-            </if>
-            <if test="commentCount != null">
-                commentCount = #{commentCount,jdbcType=INTEGER},
-            </if>
-            <if test="createTime != null">
-                createTime = #{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateTime != null">
-                updateTime = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-        </set>
-        where id = #{id,jdbcType=BIGINT}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.napster.model.Article">
-        UPDATE T_ARTICLE
-        SET title        = #{title,jdbcType=VARCHAR},
-            categoryId   = #{categoryId,jdbcType=BIGINT},
-            author       = #{author,jdbcType=VARCHAR},
-            summary      = #{summary,jdbcType=VARCHAR},
-            contentFile  = #{contentFile,jdbcType=VARCHAR},
-            itOrLife     = #{itOrLife,jdbcType=VARCHAR},
-            visitCount   = #{visitCount,jdbcType=INTEGER},
-            commentCount = #{commentCount,jdbcType=INTEGER},
-            createTime   = #{createTime,jdbcType=TIMESTAMP},
-            updateTime   = #{updateTime,jdbcType=TIMESTAMP}
-        WHERE id = #{id,jdbcType=BIGINT}
-    </update>
+  <resultMap id="BaseResultMap" type="com.napster.model.Article">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="title" jdbcType="VARCHAR" property="title"/>
+    <result column="categoryName" jdbcType="VARCHAR" property="categoryName"/>
+    <result column="author" jdbcType="VARCHAR" property="author"/>
+    <result column="summary" jdbcType="VARCHAR" property="summary"/>
+    <result column="contentFile" jdbcType="VARCHAR" property="contentFile"/>
+    <result column="coverFile" jdbcType="VARCHAR" property="coverFile"/>
+    <result column="itOrLife" jdbcType="VARCHAR" property="itOrLife"/>
+    <result column="visitCount" jdbcType="INTEGER" property="visitCount"/>
+    <result column="commentCount" jdbcType="INTEGER" property="commentCount"/>
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, categoryName, author, summary, contentFile, coverFile, itOrLife, visitCount,
+    commentCount, createTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from T_ARTICLE
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    DELETE FROM T_ARTICLE
+    WHERE id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.napster.model.Article">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_ARTICLE (id, title, categoryName,
+    author, summary, contentFile,
+    coverFile, itOrLife, visitCount,
+    commentCount, createTime, updateTime
+    )
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{categoryName,jdbcType=VARCHAR},
+    #{author,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{contentFile,jdbcType=VARCHAR},
+    #{coverFile,jdbcType=VARCHAR}, #{itOrLife,jdbcType=VARCHAR}, #{visitCount,jdbcType=INTEGER},
+    #{commentCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.napster.model.Article">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into T_ARTICLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="title != null">
+        title,
+      </if>
+      <if test="categoryName != null">
+        categoryName,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="summary != null">
+        summary,
+      </if>
+      <if test="contentFile != null">
+        contentFile,
+      </if>
+      <if test="coverFile != null">
+        coverFile,
+      </if>
+      <if test="itOrLife != null">
+        itOrLife,
+      </if>
+      <if test="visitCount != null">
+        visitCount,
+      </if>
+      <if test="commentCount != null">
+        commentCount,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null">
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="contentFile != null">
+        #{contentFile,jdbcType=VARCHAR},
+      </if>
+      <if test="coverFile != null">
+        #{coverFile,jdbcType=VARCHAR},
+      </if>
+      <if test="itOrLife != null">
+        #{itOrLife,jdbcType=VARCHAR},
+      </if>
+      <if test="visitCount != null">
+        #{visitCount,jdbcType=INTEGER},
+      </if>
+      <if test="commentCount != null">
+        #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.napster.model.Article">
+    update T_ARTICLE
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null">
+        categoryName = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="contentFile != null">
+        contentFile = #{contentFile,jdbcType=VARCHAR},
+      </if>
+      <if test="coverFile != null">
+        coverFile = #{coverFile,jdbcType=VARCHAR},
+      </if>
+      <if test="itOrLife != null">
+        itOrLife = #{itOrLife,jdbcType=VARCHAR},
+      </if>
+      <if test="visitCount != null">
+        visitCount = #{visitCount,jdbcType=INTEGER},
+      </if>
+      <if test="commentCount != null">
+        commentCount = #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.napster.model.Article">
+    UPDATE T_ARTICLE
+    SET title      = #{title,jdbcType=VARCHAR},
+      categoryName = #{categoryName,jdbcType=VARCHAR},
+      author       = #{author,jdbcType=VARCHAR},
+      summary      = #{summary,jdbcType=VARCHAR},
+      contentFile  = #{contentFile,jdbcType=VARCHAR},
+      coverFile    = #{coverFile,jdbcType=VARCHAR},
+      itOrLife     = #{itOrLife,jdbcType=VARCHAR},
+      visitCount   = #{visitCount,jdbcType=INTEGER},
+      commentCount = #{commentCount,jdbcType=INTEGER},
+      createTime   = #{createTime,jdbcType=TIMESTAMP},
+      updateTime   = #{updateTime,jdbcType=TIMESTAMP}
+    WHERE id = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- 以上为自动生成-->
 
-    <!-- 以上为自动生成-->
+  <!--计算文章总记录数-->
+  <select id="count" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM T_ARTICLE
+  </select>
 
-    <select id="count" resultType="java.lang.Integer">
-        SELECT count(*)
-        FROM T_ARTICLE
-    </select>
+  <!-- 列出最近更新的文章列表-->
+  <select id="listArticleByRecent" resultType="com.napster.model.Article" parameterType="java.lang.Integer">
+    SELECT *
+    FROM T_ARTICLE
+    ORDER BY updateTime DESC
+    LIMIT 0, #{num,jdbcType=INTEGER}
+  </select>
 
+  <!-- 列出阅读排行的文章列表-->
+  <select id="listArticleByRank" resultType="com.napster.model.vo.ArticleTitleContent"
+          parameterType="java.lang.Integer">
+    SELECT
+      title,
+      contentFile
+    FROM T_ARTICLE
+    ORDER BY visitCount DESC
+    LIMIT 0, #{num,jdbcType=INTEGER}
+  </select>
 </mapper>

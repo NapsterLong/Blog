@@ -1,10 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>NapsterLong</title>
+    <!-- load stylesheets -->
+    <link rel="stylesheet" href="/css/font.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/templatemo-style.css"/>
+    <link rel="stylesheet" href="/css/my.css"/>
+    <!-- load JS files -->
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/tether.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <script src="/js/vue.js"></script>
+    <script src="/js/vue-router.js"></script>
+    <script src="/js/vue-resource.min.js"></script>
 </head>
 <body>
+<div th:substituteby="common/header::header"></div>
+<!-- 头部图片-->
+<div class="tm-sky-img-container"></div>
+<!--正文部分 -->
+<section class="tm-section" id="main">
 
+    <div class="container-fluid">
+        <div class="row">
+
+            <!--正文左侧 -->
+            <div class="column col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
+                <!--左侧文章 -->
+                <div v-html="blogContent"></div>
+            </div>
+
+            <!--正文右侧-->
+            <aside class="column col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 tm-aside-r">
+
+                <div class="tm-aside-container">
+
+                    <h3 class="tm-gold-text tm-title">
+                        阅读排行
+                    </h3>
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/blog" class="my-text-link">ConcurrentHashMap源码分析</a></li>
+                            <li><a href="/blog" class="my-text-link">设计模式之——OO软件设计原则</a></li>
+                            <li><a href="/blog" class="my-text-link">Java多线程之——API详解</a></li>
+                            <li><a href="/blog" class="my-text-link">Java8新特性</a></li>
+                            <li><a href="/about" class="my-text-link">Java虚拟机之——垃圾收集器GC</a></li>
+                            <li><a href="/about" class="my-text-link">高质量代码——Effective Java</a></li>
+                            <li><a href="/contact" class="my-text-link">Java集合类型详解</a></li>
+                            <li><a href="/contact" class="my-text-link">HashMap源码注解之静态工具方法hash()、tableSizeFor()</a>
+                            </li>
+                            <li><a href="/contact" class="my-text-link">HashMap 的 hash 方法原理</a></li>
+                            <li><a href="/contact" class="my-text-link">Cookie/Session机制详解</a></li>
+                        </ul>
+                    </nav>
+                    <hr class="tm-margin-t-small"/>
+
+                    <h3 class="tm-gold-text tm-title tm-margin-t-small">
+                        关于我
+                    </h3>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 column">
+                            <div class="media-left">
+                                <img src="/img/personInfo/profilePhoto.jpg"
+                                     alt="Image" class="tm-footer-thumbnail"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 column">
+                            <h5 class="tm-gold-text tm-margin-b-15 tm-margin-t-15"><em>NapsterLong</em></h5>
+                            <p class="tm-small-font tm-media-description"> 喜欢挑战，不甘平庸</p>
+                        </div>
+                    </div>
+
+
+                    <img src="/img/personInfo/gongzhonghao.jpg"
+                         alt="Image" class="img-fluid"/>
+                    <p>☝☝☝ ︎我的技术公众号☝☝☝</p>
+                    <hr class="tm-margin-t-small"/>
+                    <h3 class="tm-gold-text tm-title tm-margin-t-small">
+                        友情链接
+                    </h3>
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="#" class="my-text-link-middle">博客链接</a></li>
+                            <li><a href="www.google.com/ncr" class="my-text-link-middle">Google链接</a></li>
+                            <li><a href="www.baidu.com" class="my-text-link-middle">百度链接</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+        </div>
+
+    </div>
+</section>
+
+<div th:substituteby="common/footer::footer"></div>
+
+<script th:inline="javascript">
+
+    var app = new Vue({
+        el: '#main',
+        data: {
+            blogContent: ""
+        },
+        created: function () {
+            this.blogContent = [[${blogContent}]];
+        },
+        method: {}
+    });
+</script>
 </body>
 </html>

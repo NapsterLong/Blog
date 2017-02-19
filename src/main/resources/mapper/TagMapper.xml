@@ -93,14 +93,23 @@
 
     <!--以上为自动生成 -->
 
+    <!-- 去重插入一个标签 -->
     <insert id="insertIgnore" parameterType="com.napster.model.Tag" useGeneratedKeys="true" keyProperty="id">
         INSERT IGNORE INTO T_TAG (`tagName`, `creator`, `itOrLife`)
         VALUES (#{tagName,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{itOrLife,jdbcType=VARCHAR})
     </insert>
 
+    <!-- 根据标签名称插入标签 -->
     <select id="selectByTagName" parameterType="java.lang.String" resultType="com.napster.model.Tag">
         SELECT *
         FROM T_TAG
         WHERE tagName = #{tagName,jdbcType=VARCHAR}
+    </select>
+
+    <!-- 根据文章ID查询该文章的所有标签 -->
+    <select id="selectTagsByArticleId" parameterType="java.lang.Long" resultType="com.napster.model.Tag">
+        SELECT tag.*
+        FROM T_TAG AS tag
+            JOIN T_RE_ARTICLE_TAG AS re ON re.articleId = #{articleId,jdbcType=BIGINT} AND tag.id = re.tagId
     </select>
 </mapper>

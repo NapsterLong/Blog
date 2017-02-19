@@ -1,10 +1,273 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>NapsterLong</title>
+
+    <!-- load stylesheets -->
+    <link rel="stylesheet" href="/css/font.css"/>  <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>   <!-- Bootstrap style -->
+    <link rel="stylesheet" href="/css/templatemo-style.css"/>
+    <link rel="stylesheet" href="/css/my.css"/>
+    <!-- Templatemo style -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9] -->
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <!-- [endif]-->
 </head>
 <body>
+<div th:substituteby="/common/header::header"></div>
+<!-- 头部图片-->
+<div class="tm-index-img-container"></div>
+<!--正文部分 -->
+<section class="tm-section">
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <!--正文左侧 -->
+            <div class="column col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
+
+                <!--左侧文章 -->
+                <div class="tm-blog-post">
+                    <h3 class="tm-gold-text tm-title tm-margin-b-30">
+                        最新文章
+                    </h3>
+                    <div class="tm-contact-related-posts-container tm-margin-b-30">
+                        <!-- 文章标题 -->
+                        <h3>
+                            <a href="/blog" class="my-text-link-height-middle">ConcurrentHashMap源码分析</a>
+                        </h3>
+                        <!-- 时间标签访问量评论量-->
+                        <div class="row small-font-half">
+                            <div class="column col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 ">
+                                2017-01-01 23:10|<a href="#">Java</a>|<a href="#">源码</a>|<a href="#">HashMap</a>
+                            </div>
+                            <div class="column col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
+                                <label class="my-float-right">访问量：20000|评论量：2000</label>
+                            </div>
+                        </div>
+
+                        <!--图片及正文梗概 -->
+                        <div class="media tm-related-post">
+                            <div class="media-left media-middle">
+                                <img class="media-object"
+                                     src="/img/tm-img-240x120-1.jpg"
+                                     alt="Generic placeholder image"/>
+                            </div>
+                            <div class="media-body">
+                                <p class="tm-small-font tm-media-description">
+                                    实现原理：锁分离：在HashMap的基础上，将数据分段存储，
+                                    ConcurrentHashMap由多个Segment组成，每个Segment都有把锁。
+                                    Segment下包含很多Node，也就是我们的键值对了。
+                                    CAS算法；unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+                                    CAS(Compare And Swap)，意思是如果valueOffset位置包含的值与expect值相同，
+                                    则更新valueOffset位置的值为update，并返回true，否则不更新，返回false....
+                                    <a href="/blog" class="my-text-link text-uppercase">阅读全文</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tm-contact-related-posts-container tm-margin-b-30">
+                        <!-- 文章标题 -->
+                        <h3>
+                            <a href="/blog" class="my-text-link-height-middle">ConcurrentHashMap源码分析</a>
+                        </h3>
+                        <!-- 时间标签访问量评论量-->
+                        <div class="row small-font-half">
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                2017-01-01 23:10|<a href="#">Java</a>|<a href="#">源码</a>|<a href="#">HashMap</a>
+                            </div>
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                <label class="my-float-right">访问量：20000|评论量：2000</label>
+                            </div>
+                        </div>
+
+                        <!--图片及正文梗概 -->
+                        <div class="media tm-related-post">
+                            <div class="media-left media-middle">
+                                <img class="media-object"
+                                     src="/img/tm-img-240x120-1.jpg"
+                                     alt="Generic placeholder image"/>
+                            </div>
+                            <div class="media-body">
+                                <p class="tm-small-font tm-media-description">
+                                    实现原理：锁分离：在HashMap的基础上，将数据分段存储，
+                                    ConcurrentHashMap由多个Segment组成，每个Segment都有把锁。
+                                    Segment下包含很多Node，也就是我们的键值对了。
+                                    CAS算法；unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+                                    CAS(Compare And Swap)，意思是如果valueOffset位置包含的值与expect值相同，
+                                    则更新valueOffset位置的值为update，并返回true，否则不更新，返回false....
+                                    <a href="/blog" class="my-text-link text-uppercase">阅读全文</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tm-contact-related-posts-container tm-margin-b-30">
+                        <!-- 文章标题 -->
+                        <h3>
+                            <a href="/blog" class="my-text-link-height-middle">ConcurrentHashMap源码分析</a>
+                        </h3>
+                        <!-- 时间标签访问量评论量-->
+                        <div class="row small-font-half">
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                2017-01-01 23:10|<a href="#">Java</a>|<a href="#">源码</a>|<a href="#">HashMap</a>
+                            </div>
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                <label class="my-float-right">访问量：20000|评论量：2000</label>
+                            </div>
+                        </div>
+
+                        <!--图片及正文梗概 -->
+                        <div class="media tm-related-post">
+                            <div class="media-left media-middle">
+                                <img class="media-object"
+                                     src="/img/tm-img-240x120-1.jpg"
+                                     alt="Generic placeholder image"/>
+                            </div>
+                            <div class="media-body">
+                                <p class="tm-small-font tm-media-description">
+                                    实现原理：锁分离：在HashMap的基础上，将数据分段存储，
+                                    ConcurrentHashMap由多个Segment组成，每个Segment都有把锁。
+                                    Segment下包含很多Node，也就是我们的键值对了。
+                                    CAS算法；unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+                                    CAS(Compare And Swap)，意思是如果valueOffset位置包含的值与expect值相同，
+                                    则更新valueOffset位置的值为update，并返回true，否则不更新，返回false....
+                                    <a href="/blog" class="my-text-link text-uppercase">阅读全文</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tm-contact-related-posts-container tm-margin-b-30">
+                        <!-- 文章标题 -->
+                        <h3>
+                            <a href="/blog" class="my-text-link-height-middle">ConcurrentHashMap源码分析</a>
+                        </h3>
+                        <!-- 时间标签访问量评论量-->
+                        <div class="row small-font-half">
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                2017-01-01 23:10|<a href="#">Java</a>|<a href="#">源码</a>|<a href="#">HashMap</a>
+                            </div>
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                <label class="my-float-right">访问量：20000|评论量：2000</label>
+                            </div>
+                        </div>
+
+                        <!--图片及正文梗概 -->
+                        <div class="media tm-related-post">
+                            <div class="media-left media-middle">
+                                <img class="media-object"
+                                     src="/img/tm-img-240x120-1.jpg"
+                                     alt="Generic placeholder image"/>
+                            </div>
+                            <div class="media-body">
+                                <p class="tm-small-font tm-media-description">
+                                    实现原理：锁分离：在HashMap的基础上，将数据分段存储，
+                                    ConcurrentHashMap由多个Segment组成，每个Segment都有把锁。
+                                    Segment下包含很多Node，也就是我们的键值对了。
+                                    CAS算法；unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+                                    CAS(Compare And Swap)，意思是如果valueOffset位置包含的值与expect值相同，
+                                    则更新valueOffset位置的值为update，并返回true，否则不更新，返回false....
+                                    <a href="/blog" class="my-text-link text-uppercase">阅读全文</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tm-contact-related-posts-container tm-margin-b-30">
+                        <!-- 文章标题 -->
+                        <h3>
+                            <a href="/blog" class="my-text-link-height-middle">ConcurrentHashMap源码分析</a>
+                        </h3>
+                        <!-- 时间标签访问量评论量-->
+                        <div class="row small-font-half">
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                2017-01-01 23:10|<a href="#">Java</a>|<a href="#">源码</a>|<a href="#">HashMap</a>
+                            </div>
+                            <div class="column col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                <label class="my-float-right">访问量：20000|评论量：2000</label>
+                            </div>
+                        </div>
+
+                        <!--图片及正文梗概 -->
+                        <div class="media tm-related-post">
+                            <div class="media-left media-middle">
+                                <img class="media-object"
+                                     src="/img/tm-img-240x120-1.jpg"
+                                     alt="Generic placeholder image"/>
+                            </div>
+                            <div class="media-body">
+                                <p class="tm-small-font tm-media-description">
+                                    实现原理：锁分离：在HashMap的基础上，将数据分段存储，
+                                    ConcurrentHashMap由多个Segment组成，每个Segment都有把锁。
+                                    Segment下包含很多Node，也就是我们的键值对了。
+                                    CAS算法；unsafe.compareAndSwapInt(this, valueOffset, expect, update);
+                                    CAS(Compare And Swap)，意思是如果valueOffset位置包含的值与expect值相同，
+                                    则更新valueOffset位置的值为update，并返回true，否则不更新，返回false....
+                                    <a href="/blog" class="my-text-link text-uppercase">阅读全文</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--正文右侧-->
+            <aside class="column col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 tm-aside-r">
+
+                <div class="tm-aside-container">
+
+                    <h3 class="tm-gold-text tm-title">
+                        阅读排行
+                    </h3>
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/blog" class="my-text-link">ConcurrentHashMap源码分析</a></li>
+                            <li><a href="/blog" class="my-text-link">设计模式之——OO软件设计原则</a></li>
+                            <li><a href="/blog" class="my-text-link">Java多线程之——API详解</a></li>
+                            <li><a href="/blog" class="my-text-link">Java8新特性</a></li>
+                            <li><a href="/about" class="my-text-link">Java虚拟机之——垃圾收集器GC</a></li>
+                            <li><a href="/about" class="my-text-link">高质量代码——Effective Java</a></li>
+                            <li><a href="/contact" class="my-text-link">Java集合类型详解</a></li>
+                            <li><a href="/contact" class="my-text-link">HashMap源码注解之静态工具方法hash()、tableSizeFor()</a>
+                            </li>
+                            <li><a href="/contact" class="my-text-link">HashMap 的 hash 方法原理</a></li>
+                            <li><a href="/contact" class="my-text-link">Cookie/Session机制详解</a></li>
+                        </ul>
+                    </nav>
+                    <hr class="tm-margin-t-small"/>
+                    <h3 class="tm-gold-text tm-title tm-margin-t-small">
+                        友情链接
+                    </h3>
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="#" class="my-text-link-middle">博客链接</a></li>
+                            <li><a href="www.google.com/ncr" class="my-text-link-middle">Google链接</a></li>
+                            <li><a href="www.baidu.com" class="my-text-link-middle">百度链接</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+        </div>
+
+    </div>
+</section>
+
+<div th:substituteby="/common/footer::footer"></div>
+
+<!-- load JS files -->
+<script src="/js/jquery-1.11.3.min.js"></script>
+<!-- jQuery (https://jquery.com/download/) -->
+<script src="/js/tether.min.js"></script>
+<!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h -->
+<script src="/js/bootstrap.min.js"></script>
+<!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
 
 </body>
 </html>
