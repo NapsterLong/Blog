@@ -48,7 +48,7 @@ druid:
     username: admin
     password: admin
 #blog info
-rootPath: /data1/resources
+rootPath: /data/resources
 loginKey: Napster-Long0310
 
 

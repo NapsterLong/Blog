@@ -2,7 +2,7 @@
 <configuration status="off">
     <properties>
         <property name="PROJECT_NAME">blog</property>
-        <property name="LOG_PATH">/logs</property>
+        <property name="LOG_PATH">/data/logs</property>
         <property name="LOG_BACK_PATH">${LOG_PATH}/${PROJECT_NAME}/history</property>
         <property name="ERROR_FILE_NAME">error</property>
         <property name="WARN_FILE_NAME">warn</property>
