@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>NapsterLong</title>
+
+    <!-- load stylesheets -->
+    <link rel="stylesheet" href="/css/font.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/templatemo-style.css"/>
+    <link rel="stylesheet" href="/css/my.css"/>
+    <link rel="stylesheet" href="/css/sidebar.css"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <!-- load JS files -->
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/tether.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/plugin/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/plugin/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/plugin/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script src="/js/vue.js"></script>
+    <script src="/js/vue-router.js"></script>
+    <script src="/js/vue-resource.min.js"></script>
+</head>
+<body>
+<!-- 头部-->
+<div th:substituteby="/common/header::adminHeader"></div>
+<!--正文 -->
+<section id="main" class="my-section">
+    <div class="container-fluid">
+        <div class="row tm-2-rows-sm-swap">
+            <!--左侧导航栏 -->
+            <div th:substituteby="/common/sidebar::sidebar"></div>
+            <!--右侧正文 -->
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9 tm-2-rows-sm-down-1">
+                <!-- 查询条件-->
+                <div class="row">
+                    <div class="column col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <div class="column col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                            <label for="author">文章作者:</label>
+                        </div>
+                        <div class="column col-xs-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                            <input type="text" id="author" name="author" class="my-form"
+                                   placeholder="Author" maxlength="64" v-model="author"/>
+                        </div>
+                    </div>
+                    <div class="column col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
+                        <div class="column col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                            <label for="title">文章标题:</label>
+                        </div>
+                        <div class="column col-xs-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                            <input type="text" id="title" name="title" class="my-form"
+                                   placeholder="Title" maxlength="64" v-model="title"/>
+                        </div>
+                    </div>
+                    <div class="column col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <div class="column col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                            <label for="tags">文章标签:</label>
+                        </div>
+                        <div class="column col-xs-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                            <input type="text" id="tags" name="tags" class="my-form"
+                                   placeholder="use , to split" v-model="tags"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row tm-margin-t-5">
+                    <div class="column col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 tm-margin-t-15">
+                        <div class="column col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                            <label for="itOrLife">文章性质:</label>
+                        </div>
+                        <div class="column col-xs-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                            <select id="itOrLife" name="itOrLife" class="my-form"
+                                    v-model="itOrLife">
+                                <option value="01">技术</option>
+                                <option value="02">随笔</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="column col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 tm-margin-t-15">
+                        <div class="column col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                            <label for="category">文章类别:</label>
+                        </div>
+                        <div class="column col-xs-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                            <select id="category" name="category" class="my-form"
+                                    v-model="category">
+                                <option v-for="temp in categories" v-bind:value="temp.categoryName">
+                                    {{ temp.categoryName }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="column col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <div class="column col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                        </div>
+                        <div class="column col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                            <button class="tm-btn" v-on:click="queryArticle()">查询</button>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <!-- 查询结果-->
+                <div class="row">
+                    <div class="column col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                         标题
+                    </div>
+                    <div class="column col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                        作者
+                    </div>
+                    <div class="column col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+                        评论
+                    </div>
+                    <div class="column col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+                        访问
+                    </div>
+                    <div class="column col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                        更新时间
+                    </div>
+                    <div class="column col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                        操作
+                    </div>
+                </div>
+
+                <article-list v-for="temp in articleList" v-bind:article="temp"
+                                   v-bind:tags="temp.tags" v-bind:blog="'/blog/' + temp.contentFile">
+                </article-list>
+
+                <div style="float:right">
+                    <input style="float:left;margin: 4px 5px 0 0;" type="button" value="上一页" v-on:click="previousPage()"/>
+                    <input style="float:left;margin: 4px 5px 0 0;" type="number" size="10" id="goPage" value="" v-model="currentPage" />
+                    <input style="float:left;margin: 4px 5px 0 0;" type="button" value="GO" v-on:click="queryArticle()"/>
+                    <input style="float:left;margin: 4px 5px 0 0;" type="button" value="下一页" v-on:click="nextPage()"/>
+                </div>
+                <span class="my-message-error">{{message}}</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 底栏 -->
+<div th:substituteby="/common/footer::footer"></div>
+<!--my js -->
+<script th:inline="javascript">
+    Vue.component('article-list', {
+        props: ['article'],
+        template: '<div class="row">\
+        <div class="column col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">\
+        {{article.title}}\
+        </div>\
+        <div class="column col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">\
+        {{article.author}}\
+        </div>\
+        <div class="column col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">\
+        {{article.visitCount}}\
+        </div>\
+        <div class="column col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">\
+        {{article.commentCount}}\
+        </div>\
+        <div class="column col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">\
+        {{new Date(article.updateTime).toLocaleDateString()}}\
+        </div>\
+        <div class="column col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">\
+        <button style="color: #00ff00;" v-on:click="updateArticle(article.id)">更改</button>\
+        <button style="color: #FF0000;"  v-on:click="deleteArticle(article.id)">删除</button>\
+        </div>\
+        </div>\
+        '
+    });
+    var app = new Vue({
+        el: '#head',
+        data: {
+            userName: ""
+        },
+        created: function () {
+            this.userName = [[${userName}]];
+        },
+        method: {}
+    });
+
+    var appMain = new Vue({
+        el: '#main',
+        data: {
+            title: "",
+            itOrLife: "",
+            category: "",
+            categories: [],
+            tags: "",
+            author: "",
+            articleList: [],
+            message: "",
+            currentPage:0
+        },
+        created: function () {
+            this.itOrLife = "01";
+            this.categories = [[${categories}]];
+            if (this.categories == null || this.categories == [] || this.categories.length == 0) {
+            } else {
+                this.category = this.categories[0].categoryName;
+            }
+        },
+        watch: {},
+        methods: {
+            queryArticle: function () {
+                if(this.currentPage === 0) {
+                    this.currentPage = 1;
+                }
+                this.$http.post("/admin/article/queryArticle", {
+                    "author": this.author,
+                    "title": this.title,
+                    "tags": this.tags,
+                    "itOrLife": this.itOrLife,
+                    "category": this.category,
+                    "currentPage":this.currentPage
+                }).then(function (response) {
+                    var result = response.data;
+                    var code = result.code;
+                    if (code == "SUCCESS") {
+                        this.articleList = result.data.articleList;
+                        this.currentPage = result.data.currentPage;
+                        this.message = "";
+                    } else {
+                        this.articleList = [];
+                        this.message = result.message;
+                    }
+                }, function (response) {
+                    var result = response.data;
+                    this.message = result.message ? result.message : "系统错误";
+                });
+
+            },
+            previousPage:function() {
+                this.currentPage = this.currentPage - 1;
+                this.queryArticle();
+            },
+            nextPage:function() {
+                this.currentPage = this.currentPage + 1;
+                this.queryArticle();
+            },
+        }
+
+    });
+</script>
+
+</body>
+</html>

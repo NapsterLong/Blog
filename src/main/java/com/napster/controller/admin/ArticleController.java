@@ -1,8 +1,10 @@
 package com.napster.controller.admin;
 
+import com.napster.common.constant.SystemConstant;
 import com.napster.common.response.ResponseResult;
 import com.napster.enums.ITOrLifeEnum;
 import com.napster.enums.ResultCodeEnum;
+import com.napster.model.Article;
 import com.napster.model.Category;
 import com.napster.service.admin.ArticleService;
 import com.napster.service.admin.CategoryService;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.xml.transform.Result;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -68,5 +72,44 @@ public class ArticleController {
         }
         return responseResult;
     }
+
+
+    @RequestMapping(value = "/article/toManage", method = RequestMethod.GET)
+    public String toManage(Model model) {
+        List<Category> categoryList = categoryService.listCategoriesByIL(ITOrLifeEnum.IT);
+        if (CollectionUtils.isNotEmpty(categoryList)) {
+            model.addAttribute("categories", categoryList);
+        }
+        return "/article/manageArticle";
+    }
+
+    @RequestMapping(value = "/article/queryArticle", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseResult<Map<String,Object>> queryArticle(@RequestBody Map<String, Object> params) {
+        ResponseResult<Map<String,Object>> responseResult = new ResponseResult<>();
+        Map<String, Object> data = new HashMap<>();
+        List<Article> articleList;
+        try {
+            articleList = articleService.listArticleByPage(params, SystemConstant.LIST_ARTICLE_COUNT10);
+            if (CollectionUtils.isEmpty(articleList)) {
+                responseResult.setCode(ResultCodeEnum.ARGUMENT_ERROR);
+                responseResult.setMessage("无数据");
+                return responseResult;
+            }
+            data.put("articleList", articleList);
+            data.put("currentPage", params.get("currentPage"));
+
+            responseResult.setCode(ResultCodeEnum.SUCCESS);
+            responseResult.setData(data);
+        } catch (Exception e) {
+            LogUtil.logError(e);
+            responseResult.setCode(ResultCodeEnum.SYS_ERROR);
+            responseResult.setMessage("系统错误");
+        }
+        return responseResult;
+    }
+
+
+
 
 }

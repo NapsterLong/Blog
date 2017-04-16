@@ -5,6 +5,7 @@ import com.napster.model.vo.ArticleTitleContent;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public interface ArticleMapper {
@@ -41,4 +42,11 @@ public interface ArticleMapper {
      * @return 文章列表
      */
     List<ArticleTitleContent> listArticleByRank(int num);
+
+    /**
+     * 根据查询条件列出文章列表
+     * @param map 条件
+     * @return
+     */
+    List<Article> listArticleByPage(Map<String,Object> map);
 }

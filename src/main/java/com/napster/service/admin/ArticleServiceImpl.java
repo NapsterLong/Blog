@@ -20,6 +20,8 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -110,4 +112,23 @@ public class ArticleServiceImpl implements ArticleService {
         responseResult.setCode(ResultCodeEnum.SUCCESS);
         return responseResult;
     }
+
+    @Override
+    public List<Article> listArticleByPage(Map<String, Object> map, int pageNum) {
+        map.put("pageNum", pageNum);
+        int currentPage = Integer.parseInt(map.get("currentPage").toString());
+        currentPage = currentPage < 0 ? 0 : currentPage;
+        map.put("pageStart", (currentPage - 1) * pageNum);
+        String tags = map.get("tags").toString();
+        if (StringUtils.isNotBlank(tags)) {
+            List<String> tagList = Arrays.asList(tags.split(","));
+            map.put("tags", new ArrayList<>(tagList));
+        }
+        else {
+            map.put("tags", null);
+        }
+        return articleMapper.listArticleByPage(map);
+    }
+
+
 }

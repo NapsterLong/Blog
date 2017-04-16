@@ -155,7 +155,7 @@ public class DataSourceConfig {
     /**
      * 配置分页插件
      */
-    @Bean
+/*    @Bean
     public PageHelper pageHelper() {
         PageHelper pageHelper = new PageHelper();
         Properties properties = new Properties();
@@ -164,7 +164,7 @@ public class DataSourceConfig {
         properties.setProperty("pageSizeZero", "true");
         pageHelper.setProperties(properties);
         return pageHelper;
-    }
+    }*/
 }
 
 

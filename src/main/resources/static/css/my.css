@@ -75,6 +75,10 @@
     margin-top: 15px;
 }
 
+.tm-margin-t-5 {
+    margin-top: 5px;
+}
+
 .my-section {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -99,6 +103,25 @@
     height: 200px;
 }
 
+.my-font-middle {
+    font-size: 1rem;
+}
+
+.my-form {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height:1;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: .25rem
+}
+.my-form:focus {
+    border-color: #CC9900;
+}
 .my-tag {
     display: inline-block;
     position: relative;
